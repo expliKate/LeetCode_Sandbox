@@ -1,10 +1,13 @@
 package DeleteMiddleNode;
+import java.util.ArrayList;
+import java.util.Collections;
 
 public class DeleteMiddleListNode {
 
     public static void main(String[] args) {
         // Make the example
-        int[] newList = {1,2,3,4,5,6};
+        int[] newList = {1,2,3,4};
+        //int[] newList = {1,3,4,7,1,2,6};
         ListNode myListNode = fillList(newList);
 
         System.out.println("The contents of the updated list are: " + printListValues(deleteMiddle(myListNode)));
@@ -16,11 +19,22 @@ public class DeleteMiddleListNode {
         ListNode after = null;
         ListNode current = head;
         int currentIndex = 0;
+        ArrayList<Integer> indexableCopy = new ArrayList<Integer>();
+
+        // Since I have to iterate the list to get its length, copy it to an ArrayList at the same time.
+        // (Note: The rest of the code was written prior to this change. There are almost certainly efficiencies
+        // now that I have an ArrayList instead of just a singly-linked list.)
+        while(current.next != null){
+            indexableCopy.add(current.val);
+            current = current.next;
+        }
 
         // Calculate middle position.
-        //TODO: Actually calculate this.
+        deletionIndex = (int) Math.floor(indexableCopy.size()/2);
 
-        while(after == null && head.next != null) {
+        // Reusing a variable.
+        current = head;
+        while(after == null && current.next != null) {
             if(currentIndex == deletionIndex - 1) {
                 // Get the list node before the middle position.
                 before = current;
