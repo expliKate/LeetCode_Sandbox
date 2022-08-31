@@ -47,7 +47,7 @@ public class DeleteMiddleListNode {
             current = current.next;
             currentIndex++;
         }
-        String s = "stupid";
+
         // Point the list node before the middle position to the list node after it.
         before.next = after;
 
